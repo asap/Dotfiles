@@ -1,0 +1,28 @@
+#blatantly ripped off from https://github.com/Yeshwanthyk/Dotfiles
+
+#startup_message off
+#vbell on
+#autodetach on
+#defscrollback 30000 # Use a 30000-line scrollback buffer
+#bind \033 screen -ln -t root -h 1000 9 su
+
+#hardstatus on
+#hardstatus alwayslastline
+#hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %d/%m %C%a"
+
+#shell -$SHELL
+
+startup_message off
+vbell off
+escape /
+hardstatus alwayslastline
+defscrollback 5000
+defutf8         on
+hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
+select 0
+#split
+#resize 15
+#focus down
+#select 1
+#focus up
+#screen -t sandbox 0 vim .
