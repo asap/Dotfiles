@@ -19,10 +19,14 @@ hardstatus alwayslastline
 defscrollback 5000
 defutf8         on
 hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
+split
+split
+screen -t main 0
+screen -t python 1 python
+screen -t "apache log" 9 tail -f /var/log/apache2/error.log 
+select 1
+focus down
+focus down
+select 9
+focus up
 select 0
-#split
-#resize 15
-#focus down
-#select 1
-#focus up
-#screen -t sandbox 0 vim .
