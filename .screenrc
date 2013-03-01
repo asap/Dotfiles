@@ -22,11 +22,16 @@ hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/
 split
 split
 screen -t main 0
-screen -t python 1 python
+screen -t temp 1
+screen -t python 2 python
 screen -t "apache log" 9 tail -f /var/log/apache2/error.log 
-select 1
+select 2
 focus down
 focus down
 select 9
 focus up
 select 0
+split -v
+focus right
+select 1
+focus left
