@@ -24,11 +24,12 @@ split
 screen -t main 0
 screen -t temp 1
 screen -t python 2 python
+screen -t htop 8 htop
 screen -t "apache log" 9 tail -f /var/log/apache2/error.log 
 select 2
 focus down
 focus down
-select 9
+select 8
 focus up
 select 0
 split -v
