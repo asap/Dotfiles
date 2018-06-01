@@ -1,57 +1,45 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 autocmd BufWritePre *.py :%s/\s\+$//e
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Using VIM-PLUG
+" https://github.com/junegunn/vim-plug
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+
+Plug 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'https://github.com/shmargum/vim-sass-colors.git'
 " Max's colorful CSS plugin
-Plugin 'https://github.com/tomtom/tcomment_vim.git'
+Plug 'https://github.com/shmargum/vim-sass-colors.git'
+
 "tComment"
+Plug 'https://github.com/tomtom/tcomment_vim.git'
 
-Plugin 'junegunn/fzf'
 " http://vimawesome.com/plugin/fzf
+Plug 'junegunn/fzf'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+" https://medium.com/@hpux/vim-and-eslint-16fa08cc580f"
+Plug 'vim-syntastic/syntastic'
+
+call plug#end()
+
 " Put your non-Plugin stuff after this line
 
-"--- General Setting:  
+"--- General Setting:
 set nocompatible        " This must be the first or the changes you are
                         " expecting may not be the changes that occur
 set title               " Show filename and path
@@ -64,6 +52,21 @@ set ignorecase
 set smartcase
 set ruler               " Show cursor position
 set statusline=%<%f%h%m%r\ (%n)%=%b\ 0x%B\ \ %l,%c%V\ %P
+
+" --- LINT -- "
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'eslint'
+
+" --- END LINT -- "
+
 set laststatus=2
 "set mousehide            " Hides the mouse pointer when typing
 set undolevels=1000        " # of commands that stored for undo
