@@ -45,6 +45,9 @@ Plug 'https://github.com/w0rp/ale.git'
 " NerdTree"
 Plug 'https://github.com/scrooloose/nerdtree.git'
 
+" https://github.com/sheerun/vim-polyglot
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 " Put your non-Plugin stuff after this line
