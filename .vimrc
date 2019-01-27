@@ -48,6 +48,9 @@ Plug 'https://github.com/scrooloose/nerdtree.git'
 " https://github.com/sheerun/vim-polyglot
 Plug 'sheerun/vim-polyglot'
 
+" https://draculatheme.com/vim/
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 call plug#end()
 
 " Put your non-Plugin stuff after this line
@@ -104,7 +107,9 @@ set foldmethod=marker
 " ---
 
 " -- COLORS --- "
-colorscheme koehler
+" colorscheme koehler
+" colorscheme torte
+colorscheme dracula
 " -- END COLORS --- "
 
 " --- Coding convention
