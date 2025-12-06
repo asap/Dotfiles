@@ -1,5 +1,5 @@
 return {
-  -- Install catppuccin
+  -- Install catppuccin and override LazyVim's broken bufferline integration
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -48,6 +48,18 @@ return {
           indentscope_color = "",
         },
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+      },
+    },
+    specs = {
+      {
+        "akinsho/bufferline.nvim",
+        optional = true,
+        opts = function(_, opts)
+          if (vim.g.colors_name or ""):find("catppuccin") then
+            -- Use the correct API call for current catppuccin version
+            opts.highlights = require("catppuccin.special.bufferline").get_theme()
+          end
+        end,
       },
     },
   },
