@@ -8,18 +8,18 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 -- Define the Autosave on FocusLost Autocmd
-vim.api.nvim_create_autocmd("BufLeave", {
-  -- Group ensures the autocmd is only set once
-  group = vim.api.nvim_create_augroup("AutosaveBufLeaveFinal", { clear = true }),
-  callback = function()
-    -- Check 1: Is it a regular file buffer?
-    local is_file_buffer = (vim.bo.buftype == "")
-    -- Check 2: Has the buffer been modified (unsaved changes)?
-    local is_modified = vim.bo.modified
-
-    if is_file_buffer and is_modified then
-      -- Execute the save command silently and non-disruptively
-      vim.cmd("silent! write")
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufLeave", {
+--   -- Group ensures the autocmd is only set once
+--   group = vim.api.nvim_create_augroup("AutosaveBufLeaveFinal", { clear = true }),
+--   callback = function()
+--     -- Check 1: Is it a regular file buffer?
+--     local is_file_buffer = (vim.bo.buftype == "")
+--     -- Check 2: Has the buffer been modified (unsaved changes)?
+--     local is_modified = vim.bo.modified
+--
+--     if is_file_buffer and is_modified then
+--       -- Execute the save command silently and non-disruptively
+--       vim.cmd("silent! write")
+--     end
+--   end,
+-- })
